@@ -1,10 +1,6 @@
 # Standard Imports
 import pandas as pd
-# import nltk
-# import re
-from nltk.corpus import stopwords
-from nltk.stem import WordNetLemmatizer
-from nltk.tokenize import word_tokenize
+
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
@@ -52,4 +48,3 @@ if st.button("Recommend"):
     st.subheader(f"Movies similar to **{selected_movie}**:")
     for i, movie in enumerate(recommendations, start=1):
         st.write(f"**{i}. {movie}**")
-
