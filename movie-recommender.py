@@ -12,30 +12,6 @@ from sklearn.metrics.pairwise import cosine_similarity
 movies = pd.read_csv('dataset.csv')
 movies['tags'] = movies['overview'].fillna('') + " " + movies['genre'].fillna('')
 
-
-# import nltk
-
-# # Ensure all necessary resources are downloaded
-# nltk.download('punkt')      # Sentence tokenizer
-# nltk.download('wordnet')    # Lemmatization
-# nltk.download('stopwords')  # Stopwords
-
-# # Force reloading punkt tokenizer
-# from nltk.tokenize import word_tokenize
-
-# # Check if punkt is properly downloaded
-# nltk.data.find('tokenizers/punkt')
-
-# def clean_text(text):
-#     text = text.lower()
-#     text = re.sub(r'[^\w\s]', '', text)
-#     words = word_tokenize(text)
-#     words = [w for w in words if w not in stopwords.words('english')]
-#     words = [WordNetLemmatizer().lemmatize(w) for w in words]
-#     return " ".join(words)
-
-# movies['tags'] = movies['tags'].apply(clean_text)
-
 # Vectorization
 cv = CountVectorizer(max_features=10000, stop_words='english')
 vector = cv.fit_transform(movies['tags']).toarray()
@@ -76,3 +52,4 @@ if st.button("Recommend"):
     st.subheader(f"Movies similar to **{selected_movie}**:")
     for i, movie in enumerate(recommendations, start=1):
         st.write(f"**{i}. {movie}**")
+
